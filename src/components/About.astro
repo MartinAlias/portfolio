@@ -1,27 +1,25 @@
 ---
-import { profile } from '../data/site';
+import { profile, certifications, education } from '../data/site';
 
-const focus = [
-  { k: 'Focus', v: 'Security engineering, AI agents' },
+const earned = certifications.filter((c) => c.status === 'earned').map((c) => c.name.replace(/.*\((.+)\)$/, '$1'));
+const glance = [
+  { k: 'Role', v: profile.title },
+  { k: 'Based in', v: profile.location },
+  { k: 'Experience', v: '5+ years: infrastructure, security, full stack' },
+  ...(education[0] ? [{ k: 'Education', v: `${education[0].credential}, ${education[0].school}` }] : []),
+  ...(earned.length ? [{ k: 'Certified', v: earned.join(', ') }] : []),
   { k: 'Building', v: 'LabWarden, AI Race Engineer' },
-  { k: 'Learning', v: 'Pen-testing, detection, cloud' },
   { k: 'Principle', v: 'Read-only by default; humans approve changes' },
 ];
 ---
 
-<section id="about">
+<section class="first">
   <div class="container about">
-    <div>
-      <div class="section-head">
-        <span class="eyebrow">// whoami</span>
-        <h2>About me</h2>
-      </div>
-      {profile.about.map((p) => <p class="para">{p}</p>)}
-    </div>
+    <div>{profile.about.map((p) => <p class="para">{p}</p>)}</div>
     <aside class="card" aria-label="At a glance">
       <dl>
         {
-          focus.map((f) => (
+          glance.map((f) => (
             <div>
               <dt>{f.k}</dt>
               <dd>{f.v}</dd>
@@ -44,13 +42,11 @@ const focus = [
       grid-template-columns: 1.6fr 1fr;
       gap: 48px;
     }
-    aside {
-      margin-top: 88px;
-    }
   }
   .para {
     color: var(--muted);
     max-width: 68ch;
+    margin: 0 0 18px;
   }
   dl {
     margin: 0;

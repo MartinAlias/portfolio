@@ -2,17 +2,17 @@
 import { profile, links } from '../data/site';
 ---
 
-<div class="hero" id="top">
+<div class="hero">
   <div class="container">
-    {profile.openToWork && <p class="status"><span class="dot" aria-hidden="true"></span>Open to cybersecurity & AI roles</p>}
+    {profile.openToWork && <p class="status"><span class="dot" aria-hidden="true"></span>Open to security & infrastructure roles</p>}
     <h1>
       {profile.name}
       <span class="role">{profile.title}</span>
     </h1>
     <p class="tagline">{profile.tagline}</p>
     <div class="cta">
-      <a class="btn primary" href="#projects">View projects</a>
-      <a class="btn" href="#contact">Get in touch</a>
+      <a class="btn primary" href="/projects/">View projects</a>
+      <a class="btn" href="/contact/">Get in touch</a>
       {links.resume && <a class="btn" href={links.resume} download>Resume (PDF)</a>}
     </div>
     <ul class="meta">

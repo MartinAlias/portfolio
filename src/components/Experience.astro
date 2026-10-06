@@ -2,29 +2,24 @@
 import { experience } from '../data/site';
 ---
 
-<section id="experience">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">// history</span>
-      <h2>Experience & education</h2>
-    </div>
-    <ol class="timeline">
-      {
-        experience.map((e) => (
-          <li>
-            <div class="when">{e.period}</div>
-            <div class="what">
-              <h3>
-                {e.role} <span class="org">· {e.org}</span>
-              </h3>
-              <ul>{e.points.map((p) => <li>{p}</li>)}</ul>
-            </div>
-          </li>
-        ))
-      }
-    </ol>
-  </div>
-</section>
+<ol class="timeline">
+  {
+    experience.map((e) => (
+      <li>
+        <div class="when">
+          {e.period}
+          <span class="where">{e.location}</span>
+        </div>
+        <div class="what">
+          <h3>{e.role}</h3>
+          <p class="org">{e.org}</p>
+          <ul class="points">{e.points.map((p) => <li>{p}</li>)}</ul>
+          <ul class="tags">{e.tech.map((t) => <li>{t}</li>)}</ul>
+        </div>
+      </li>
+    ))
+  }
+</ol>
 
 <style>
   .timeline {
@@ -35,9 +30,12 @@ import { experience } from '../data/site';
   }
   .timeline > li {
     position: relative;
-    padding: 0 0 32px 24px;
+    padding: 0 0 40px 24px;
     display: grid;
-    gap: 4px;
+    gap: 6px;
+  }
+  .timeline > li:last-child {
+    padding-bottom: 8px;
   }
   .timeline > li::before {
     content: '';
@@ -52,29 +50,34 @@ import { experience } from '../data/site';
   }
   @media (min-width: 760px) {
     .timeline > li {
-      grid-template-columns: 180px 1fr;
+      grid-template-columns: 190px 1fr;
       gap: 24px;
     }
   }
   .when {
     font-family: var(--mono);
     font-size: 0.82rem;
-    color: var(--muted);
+    color: var(--text);
     padding-top: 2px;
   }
+  .where {
+    display: block;
+    color: var(--muted);
+  }
   h3 {
-    font-size: 1.08rem;
+    font-size: 1.15rem;
   }
   .org {
-    color: var(--muted);
+    margin: 2px 0 0;
+    color: var(--accent-2);
     font-weight: 500;
   }
-  .what ul {
-    margin: 8px 0 0;
+  .points {
+    margin: 12px 0 14px;
     padding-left: 18px;
     color: var(--muted);
   }
-  .what li + li {
-    margin-top: 4px;
+  .points li + li {
+    margin-top: 6px;
   }
 </style>

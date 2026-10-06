@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import FeaturedProject from '../components/FeaturedProject.astro';
+import Projects from '../components/Projects.astro';
+import { featured } from '../data/site';
+---
+
+<Base title="Projects" description="LabWarden, AI Race Engineer and other projects by Martin Horciak.">
+  <PageHeader
+    eyebrow="// featured work"
+    title="AI agents, built safe by design"
+    lead="Two agents I'm building now. Both share one rule: the AI can observe and advise, but a human decides what changes."
+  />
+  <section class="first">
+    <div class="container">
+      {featured.map((p, i) => <FeaturedProject project={p} flip={i % 2 === 1} />)}
+      <Projects />
+    </div>
+  </section>
+</Base>

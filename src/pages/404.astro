@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+---
+
+<Base title="Not found">
+  <PageHeader eyebrow="// 404" title="Page not found" lead="Nothing lives at this address.">
+    <p class="back"><a class="btn primary" href="/">Back to home</a></p>
+  </PageHeader>
+</Base>
+
+<style>
+  .back {
+    margin: 24px 0 64px;
+  }
+</style>

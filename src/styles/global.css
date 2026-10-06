@@ -93,6 +93,11 @@ section {
   border-top: 1px solid var(--border);
 }
 
+section.first {
+  border-top: none;
+  padding-top: 8px;
+}
+
 .section-head {
   margin-bottom: 32px;
 }

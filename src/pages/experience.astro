@@ -1,0 +1,85 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Experience from '../components/Experience.astro';
+import Labs from '../components/Labs.astro';
+import { education, certifications, links } from '../data/site';
+---
+
+<Base title="Experience" description="Work history, education and certifications of Martin Horciak.">
+  <PageHeader
+    eyebrow="// history"
+    title="Experience"
+    lead="5+ years across infrastructure, security operations, compliance and full stack development."
+  >
+    {links.resume && <p class="dl"><a class="btn primary" href={links.resume} download>Download resume (PDF)</a></p>}
+  </PageHeader>
+
+  <section class="first">
+    <div class="container">
+      <Experience />
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">// education</span>
+        <h2>Education & certifications</h2>
+      </div>
+      <div class="grid-2">
+        {
+          education.map((e) => (
+            <div class="card">
+              <h3>{e.school}</h3>
+              <p class="cred">{e.credential}</p>
+              <p class="muted">
+                {e.location}
+                {e.period && ` · ${e.period}`}
+              </p>
+            </div>
+          ))
+        }
+        <ul class="card certs">
+          {
+            certifications.map((c) => (
+              <li>
+                <strong>{c.name}</strong>
+                <span class="muted">
+                  {c.issuer} · {c.status === 'earned' ? c.date ?? 'Earned' : c.status === 'in-progress' ? 'In progress' : 'Planned'}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <Labs />
+</Base>
+
+<style>
+  .dl {
+    margin: 24px 0 0;
+  }
+  h3 {
+    font-size: 1.1rem;
+  }
+  .cred {
+    margin: 6px 0 0;
+    color: var(--accent-2);
+  }
+  .muted {
+    display: block;
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin: 4px 0 0;
+  }
+  .certs {
+    list-style: none;
+    margin: 0;
+    display: grid;
+    gap: 14px;
+  }
+</style>

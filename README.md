@@ -4,11 +4,12 @@ Personal portfolio for cybersecurity and AI work. Built with [Astro](https://ast
 
 ## Editing content
 
-Everything on the page comes from **`src/data/site.ts`**. Search it for `TODO` to find the placeholders
-(bio, location, email, LinkedIn, certifications, experience, home lab hardware, write-ups).
+Pages live in `src/pages/` (home, about, experience, projects, homelab, contact, 404).
+All of their content comes from **`src/data/site.ts`**. Search it for `TODO` to find the placeholders
+(home lab hardware, PJPT skills check, a missing date, TryHackMe/HTB links).
 Set a field to `''` or a list to `[]` to hide it.
 
-- **Resume:** drop a PDF at `public/resume.pdf` and set `links.resume = '/resume.pdf'`.
+- **Resume:** replace `public/resume.pdf`. Remember it is public, including the phone number on it.
 - **Terminal demos:** each featured project has a `terminal` array. `in` lines are typed, `out` lines print,
   and `tone` colors them (`ok`, `warn`, `bad`, `dim`, `accent`).
 - **Domain:** after adding a custom domain in Vercel, update `SITE` in `astro.config.mjs`,

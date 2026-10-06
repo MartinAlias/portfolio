@@ -1,25 +1,25 @@
 ---
-import { links, writeups } from '../data/site';
+import { links } from '../data/site';
 
 const nav = [
-  { href: '#projects', label: 'Projects' },
-  { href: '#homelab', label: 'Home Lab' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#experience', label: 'Experience' },
-  ...(writeups.length ? [{ href: '#labs', label: 'Labs' }] : []),
-  { href: '#contact', label: 'Contact' },
+  { href: '/about/', label: 'About' },
+  { href: '/experience/', label: 'Experience' },
+  { href: '/projects/', label: 'Projects' },
+  { href: '/homelab/', label: 'Home Lab' },
+  { href: '/contact/', label: 'Contact' },
 ];
+const path = Astro.url.pathname.replace(/\/?$/, '/');
 ---
 
 <header class="site-header">
   <div class="container bar">
-    <a class="brand" href="#top" aria-label="Back to top">
+    <a class="brand" href="/" aria-label="Home">
       <span class="prompt">~/</span>martin<span class="cursor" aria-hidden="true">_</span>
     </a>
     <nav id="site-nav" aria-label="Main">
       <ul>
-        {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
-        {links.resume && <li><a href={links.resume}>Resume</a></li>}
+        {nav.map((n) => <li><a href={n.href} aria-current={path === n.href ? 'page' : undefined}>{n.label}</a></li>)}
+        {links.resume && <li><a class="resume" href={links.resume}>Resume ↓</a></li>}
       </ul>
     </nav>
     <div class="actions">
@@ -81,9 +81,16 @@ const nav = [
     color: var(--muted);
     font-size: 0.92rem;
   }
-  nav a:hover {
+  nav a:hover,
+  nav a[aria-current='page'] {
     color: var(--text);
     text-decoration: none;
+  }
+  nav a[aria-current='page'] {
+    box-shadow: 0 2px 0 var(--accent);
+  }
+  nav a.resume {
+    color: var(--accent);
   }
   .actions {
     display: flex;

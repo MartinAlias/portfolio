@@ -1,39 +1,43 @@
 // ─────────────────────────────────────────────────────────────────────────────
 //  All of the site's content lives in this file.
-//  Search for "TODO" to find every placeholder that still needs real details.
+//  Search for "TODO" to find anything that still needs real details.
 //  Set a field to an empty string / empty array to hide it on the page.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const profile = {
   name: 'Martin Horciak',
   handle: 'MartinAlias',
-  // TODO: confirm your headline.
-  title: 'Cybersecurity & AI Engineer',
+  title: 'Infrastructure & Security Engineer',
   tagline:
-    'I build safe, read-only AI agents for networks and security, run a home lab to break and harden things, and learn by shipping.',
-  // TODO: your city / region, or '' to hide.
-  location: 'TODO: City, Country',
-  // TODO: set to false if you are not currently looking.
+    'Infrastructure and security engineer with 5+ years securing mission-critical server, cloud and storage environments, now building safe, read-only AI agents for networks and security.',
+  location: 'Toronto, ON',
+  // Set to false if you are not currently looking.
   openToWork: true,
   about: [
-    "I'm interested in everything security: penetration testing tools, network defense, and how AI changes both sides of the game. I'm comfortable moving between languages and stacks, and I learn best by building real tools.",
-    'Right now I focus on AI agents that are safe by design. LabWarden is an AI network and security engineer for my home lab that can observe and advise but never change anything. Race Engineer applies the same idea to motorsport: an agent that proposes changes and only applies them once a human approves.',
-    // TODO: add a paragraph about your background: education, current role, what you are looking for.
-    'TODO: A sentence or two about your background (education, current role) and the kind of role you want next.',
+    "I'm an infrastructure and security engineer with 5+ years of experience designing, deploying and administering mission-critical server and storage environments securely. My day-to-day spans VMware vSphere, Windows Server, Microsoft 365 and Azure, backup and disaster recovery with Druva and Veeam, and ITIL-aligned change and incident management.",
+    "On the security side I've driven SOC 2 readiness, rolled out just-in-time privileged access with PrivX and Azure PIM, run vulnerability assessments with Wazuh and SentinelOne, and deployed SIEM and IDS/IPS controls. I hold TCM Security's Practical Junior Penetration Tester (PJPT) and I'm working toward CompTIA Security+.",
+    'Outside work I build AI agents that are safe by design. LabWarden is an AI network and security engineer for my home lab that can observe and advise but never change anything. AI Race Engineer applies the same idea to motorsport: an agent that proposes changes and applies them only once a human approves.',
+  ],
+  // Headline numbers on the home page (from the resume).
+  stats: [
+    { value: '5+', label: 'years in infrastructure & security' },
+    { value: '82%', label: 'better threat detection coverage after SIEM and IDS/IPS rollout' },
+    { value: '18%', label: 'cloud spend cut through capacity planning' },
+    { value: '8+ hrs', label: 'of manual ops work automated every week' },
   ],
 };
 
 export const links = {
-  // TODO: the address you want public (left blank so it isn't published without your OK).
-  email: '',
+  email: 'MartinHorciak@gmail.com',
+  // Shown on the contact page. Set to '' to hide it.
+  phone: '(647) 862-9401',
   github: 'https://github.com/MartinAlias',
-  // TODO: your LinkedIn URL, or '' to hide.
-  linkedin: '',
+  linkedin: 'https://www.linkedin.com/in/martinhorciak',
   // TODO: TryHackMe / Hack The Box profile URLs, or '' to hide.
   tryhackme: '',
   hackthebox: '',
-  // Put your resume at public/resume.pdf. Set to '' to hide the button.
-  resume: '',
+  // Replace public/resume.pdf to update. Set to '' to hide the buttons.
+  resume: '/resume.pdf',
 };
 
 // Shown as a scripted terminal session. `in` lines are typed, `out` lines print.
@@ -163,57 +167,96 @@ export const homelab = {
 };
 
 // ── Skills ──────────────────────────────────────────────────────────────────
-// TODO: trim to what you can talk about confidently in an interview.
 export const skills = [
-  { group: 'Security', items: ['Network segmentation', 'Firewall rules', 'Vulnerability scanning', 'Pen-testing methodology', 'Log analysis', 'Least-privilege design'] },
-  { group: 'Tools', items: ['Nmap', 'Wireshark', 'Burp Suite', 'Metasploit', 'Kali Linux', 'Pi-hole', 'Docker'] },
-  { group: 'AI & agents', items: ['Claude API', 'Tool use / function calling', 'MCP', 'Human-in-the-loop design', 'Prompt design'] },
-  { group: 'Languages', items: ['Python', 'JavaScript / TypeScript', 'Swift', 'SQL', 'Bash', 'PowerShell'] },
-  { group: 'Infra', items: ['Linux', 'Proxmox', 'Git / GitHub', 'SQLite', 'Firebase', 'Vercel'] },
+  { group: 'Platforms', items: ['VMware vSphere 8', 'XEN', 'Windows Server', 'Active Directory', 'Azure / Azure AD', 'AWS', 'GCP', 'Microsoft 365', 'Docker', 'Vercel'] },
+  { group: 'Security operations', items: ['Wazuh (SIEM/XDR)', 'SentinelOne', 'SIEM', 'IDS/IPS', 'iptables', 'Vulnerability management', 'Root cause analysis'] },
+  { group: 'Access & compliance', items: ['PrivX', 'Azure PIM (just-in-time access)', 'SOC 2 readiness', 'GDPR', 'ITIL change & incident management'] },
+  // TODO: check this group matches what you covered for the PJPT.
+  { group: 'Offensive security', items: ['Internal network pen-testing (PJPT)', 'Active Directory attacks', 'Nmap', 'Metasploit', 'Burp Suite'] },
+  { group: 'Backup & DR', items: ['Druva', 'Veeam', 'NetApp', 'Cohesity', 'Disaster recovery planning', 'DR runbooks'] },
+  { group: 'Monitoring & ITSM', items: ['Zabbix', 'ServiceNow', 'Health & SLA dashboards'] },
+  { group: 'Automation & data', items: ['PowerShell', 'Python', 'Bash', 'Ansible', 'Rewst', 'SQL Server', 'MySQL', 'MongoDB', 'Firestore'] },
+  { group: 'Networking', items: ['DNS', 'DHCP', 'VPN', 'Firewalls', 'VLANs'] },
+  { group: 'AI & agents', items: ['Claude API', 'Tool use / function calling', 'MCP', 'Human-in-the-loop design'] },
 ];
 
 // ── Certifications ──────────────────────────────────────────────────────────
 // status: 'earned' | 'in-progress' | 'planned'
-// TODO: replace with your actual certifications.
 export const certifications: { name: string; issuer: string; status: 'earned' | 'in-progress' | 'planned'; date?: string; url?: string }[] = [
-  { name: 'TODO: CompTIA Security+', issuer: 'CompTIA', status: 'in-progress' },
-  { name: 'TODO: Google Cybersecurity Certificate', issuer: 'Google', status: 'planned' },
+  { name: 'Practical Junior Penetration Tester (PJPT)', issuer: 'TCM Security', status: 'earned', date: '2026' },
+  { name: 'Security+', issuer: 'CompTIA', status: 'in-progress' },
 ];
 
-// ── Experience / education ──────────────────────────────────────────────────
-// TODO: replace with your real history. Newest first.
-export const experience: { role: string; org: string; period: string; points: string[] }[] = [
+// ── Experience ──────────────────────────────────────────────────────────────
+// Newest first.
+export const experience: { role: string; org: string; location: string; period: string; points: string[]; tech: string[] }[] = [
   {
-    role: 'Independent projects',
-    org: 'Self-directed',
-    period: '2025 – Present',
+    role: 'Network & Systems Administrator',
+    org: 'Integrated Building Services Inc.',
+    location: 'Toronto, ON',
+    // TODO: add dates (the resume only says "Contract").
+    period: 'Contract',
     points: [
-      'Designing and building LabWarden, a read-only AI network & security agent with a plugin collector framework.',
-      'Built AI Race Engineer, a Claude tool-use agent with range-checked, human-approved changes and offline fallback.',
-      'Running a segmented home lab for self-hosting, monitoring and attack/defense practice.',
+      'Installed, configured and administered network hardware, hypervisors (VMware, XEN) and firewalls; deployed SIEM, IDS/IPS and iptables controls that improved threat detection coverage by 82%.',
+      'Wrote PowerShell and Bash automation that eliminated 8+ hours a week of manual operational tasks.',
+      'Monitored network performance and error logs to keep the environment secure.',
+      'Administered SQL Server, MongoDB and MySQL databases, and troubleshot complex hardware, OS and application issues with structured RCA alongside vendors and internal IT teams.',
     ],
+    tech: ['VMware', 'XEN', 'SIEM', 'IDS/IPS', 'iptables', 'PowerShell', 'Bash', 'SQL Server', 'MongoDB', 'MySQL'],
   },
   {
-    role: 'TODO: Job title',
-    org: 'TODO: Company',
-    period: 'TODO: 20XX – 20XX',
-    points: ['TODO: what you did and the impact, in one line.'],
+    role: 'IT Infrastructure & Systems Specialist',
+    org: 'ACT360',
+    location: 'Toronto, ON',
+    period: 'Dec 2025 – Jun 2026',
+    points: [
+      'Administered Windows Server environments and core network services (DNS, DHCP, VPN, Active Directory), managing the full hardware lifecycle from procurement to decommission.',
+      'Authored and maintained DR runbooks, Ansible playbooks, change records and audit-ready documentation, improving knowledge sharing and reducing mean time to resolve.',
+      'Ran root cause analysis on escalated L1/L2 incidents; corrective actions eliminated repeat failures across 3 recurring issue categories and cut ticket volume by 12%.',
+      'Delivered end-user training for new and changed systems, and built Rewst automations to streamline routine operations.',
+    ],
+    tech: ['Windows Server', 'Active Directory', 'DNS/DHCP', 'VPN', 'Ansible', 'Rewst'],
   },
   {
-    role: 'TODO: Degree / program',
-    org: 'TODO: School',
-    period: 'TODO: 20XX – 20XX',
-    points: ['RUHacks 2021 participant (Snippy).'],
+    role: 'Security Specialist',
+    org: 'Advantage Group International',
+    location: 'Toronto, ON',
+    period: 'Jun 2024 – Dec 2025',
+    points: [
+      'Managed VMware vSphere 8, the Microsoft 365 tenant (Exchange Online, SharePoint, Teams) and Azure IaaS workloads; capacity planning and cost-benefit analysis cut cloud infrastructure spend by 18%.',
+      'Drove SOC 2 readiness as part of the Security, Privacy and Compliance team, documenting and validating controls mapped to the Trust Services Criteria and GDPR.',
+      'Deployed PrivX and Azure PIM for just-in-time privileged access, and authored ITIL-aligned change and incident management procedures adopted across the organization.',
+      'Built Zabbix dashboards tracking uptime, SLA compliance and resource utilization for executive-level reporting.',
+      'Ran in-depth vulnerability assessments and worked with IT teams on remediation, root cause analysis and prevention using Wazuh (SIEM/XDR) and SentinelOne.',
+    ],
+    tech: ['vSphere 8', 'Microsoft 365', 'Azure', 'SOC 2', 'GDPR', 'PrivX', 'Azure PIM', 'Zabbix', 'Wazuh', 'SentinelOne'],
+  },
+  {
+    role: 'Full Stack Developer',
+    org: 'El-Mae-Dan Technologies Inc.',
+    location: 'Toronto, ON',
+    period: 'Contract · Mar 2022 – Jul 2022',
+    points: [
+      'Built a reliable, scalable game used by more than 15,000 players across Apple, Android and the web using WebGL.',
+      'Led backend development of real-time storage on SQL and Firestore, improving data processing efficiency by 60%.',
+      'Managed the technical side of the project from planning through deployment and post-launch support.',
+    ],
+    tech: ['WebGL', 'SQL', 'Firestore'],
+  },
+];
+
+export const education: { school: string; credential: string; location: string; period?: string; notes?: string[] }[] = [
+  {
+    school: 'University of Guelph',
+    credential: 'Bachelor of Computing, Computer Science',
+    location: 'Guelph, ON',
   },
 ];
 
 // ── Labs, CTFs & write-ups ──────────────────────────────────────────────────
-// TODO: link real write-ups, CTF results or lab rooms. Empty array hides the section.
-export const writeups: { title: string; kind: string; url?: string; note: string }[] = [
-  { title: 'TODO: TryHackMe path / rank', kind: 'Lab platform', note: 'e.g. Jr Penetration Tester path, top X%' },
-  { title: 'TODO: CTF write-up', kind: 'Write-up', note: 'e.g. how I solved a web challenge at <event>' },
-  { title: 'TODO: Home lab build log', kind: 'Blog', note: 'e.g. segmenting IoT with VLANs and OPNsense' },
-];
+// An empty array hides the section. Example entry:
+//   { title: 'TryHackMe: Jr Penetration Tester path', kind: 'Lab platform', url: 'https://...', note: 'Top 5%' },
+export const writeups: { title: string; kind: string; url?: string; note: string }[] = [];
 
 // ── Other projects ──────────────────────────────────────────────────────────
 export const projects: { name: string; description: string; stack: string[]; repo?: string; live?: string; year: string }[] = [

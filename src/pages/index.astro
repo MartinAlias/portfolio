@@ -1,41 +1,200 @@
 ---
 import Base from '../layouts/Base.astro';
-import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
-import FeaturedProject from '../components/FeaturedProject.astro';
-import Projects from '../components/Projects.astro';
-import HomeLab from '../components/HomeLab.astro';
-import Skills from '../components/Skills.astro';
-import Experience from '../components/Experience.astro';
-import Labs from '../components/Labs.astro';
-import Contact from '../components/Contact.astro';
-import { featured } from '../data/site';
+import { profile, featured, experience, certifications } from '../data/site';
 ---
 
 <Base>
-  <Header />
-  <main id="main">
-    <Hero />
-    <About />
-    <section id="projects">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">// featured work</span>
-          <h2>AI agents, built safe by design</h2>
-          <p>
-            Two agents I'm building now. Both share one rule: the AI can observe and advise, but a human
-            decides what changes.
-          </p>
-        </div>
-        {featured.map((p, i) => <FeaturedProject project={p} flip={i % 2 === 1} />)}
-        <Projects />
+  <Hero />
+
+  <section class="stats-wrap" aria-label="Highlights">
+    <div class="container">
+      <ul class="stats">
+        {
+          profile.stats.map((s) => (
+            <li class="card">
+              <span class="value">{s.value}</span>
+              <span class="label">{s.label}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">// featured work</span>
+        <h2>AI agents, built safe by design</h2>
+        <p>Two agents I'm building now. Both share one rule: the AI can observe and advise, but a human decides what changes.</p>
       </div>
-    </section>
-    <HomeLab />
-    <Skills />
-    <Experience />
-    <Labs />
-    <Contact />
-  </main>
+      <div class="grid-2">
+        {
+          featured.map((p) => (
+            <a class="card teaser" href={`/projects/#${p.id}`}>
+              <h3>{p.name}</h3>
+              <p>{p.summary}</p>
+              <ul class="tags">{p.stack.slice(0, 5).map((s) => <li>{s}</li>)}</ul>
+              <span class="more">See the demo →</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">// career</span>
+        <h2>Where I've worked</h2>
+      </div>
+      <ul class="roles">
+        {
+          experience.map((e) => (
+            <li>
+              <span class="role">{e.role}</span>
+              <span class="org">{e.org}</span>
+              <span class="period">{e.period}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <ul class="certs">
+        {
+          certifications.map((c) => (
+            <li>
+              <span class={`badge ${c.status}`}>{c.status === 'earned' ? 'Certified' : 'In progress'}</span>
+              {c.name} · {c.issuer}
+            </li>
+          ))
+        }
+      </ul>
+      <p class="cta">
+        <a class="btn" href="/experience/">Full experience →</a>
+        <a class="btn" href="/homelab/">Home lab →</a>
+      </p>
+    </div>
+  </section>
 </Base>
+
+<style>
+  .stats-wrap {
+    border-top: none;
+    padding-top: 0;
+  }
+  .stats {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  .stats li {
+    display: grid;
+    gap: 4px;
+  }
+  .value {
+    font-family: var(--mono);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1.1;
+  }
+  .label {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .teaser {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    color: var(--text);
+  }
+  .teaser:hover {
+    text-decoration: none;
+    border-color: var(--accent);
+  }
+  .teaser h3 {
+    font-size: 1.35rem;
+  }
+  .teaser p {
+    margin: 0;
+    color: var(--muted);
+  }
+  .more {
+    margin-top: auto;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--accent);
+  }
+  .roles {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--border);
+  }
+  .roles li {
+    display: grid;
+    gap: 2px 20px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  @media (min-width: 760px) {
+    .roles li {
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) 220px;
+      align-items: baseline;
+    }
+  }
+  .role {
+    font-weight: 600;
+  }
+  .org {
+    color: var(--accent-2);
+  }
+  .period {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  @media (min-width: 760px) {
+    .period {
+      text-align: right;
+    }
+  }
+  .certs {
+    list-style: none;
+    margin: 24px 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 28px;
+  }
+  .certs li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .badge {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 6px;
+    border: 1px solid currentColor;
+  }
+  .badge.earned {
+    color: var(--accent);
+  }
+  .badge.in-progress,
+  .badge.planned {
+    color: var(--warn);
+  }
+  .cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 32px 0 0;
+  }
+</style>

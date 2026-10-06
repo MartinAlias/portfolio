@@ -1,0 +1,38 @@
+---
+import { links, profile } from '../data/site';
+---
+
+<footer>
+  <div class="container foot">
+    <span>© {new Date().getFullYear()} {profile.name} · {profile.location}</span>
+    <ul>
+      {links.email && <li><a href={`mailto:${links.email}`}>Email</a></li>}
+      {links.linkedin && <li><a href={links.linkedin} rel="noopener">LinkedIn</a></li>}
+      <li><a href={links.github} rel="noopener">GitHub</a></li>
+      <li><a href="/.well-known/security.txt">security.txt</a></li>
+    </ul>
+  </div>
+</footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 0 32px;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .foot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 24px;
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+</style>

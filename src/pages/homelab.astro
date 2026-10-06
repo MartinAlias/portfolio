@@ -1,0 +1,11 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import HomeLab from '../components/HomeLab.astro';
+import { homelab } from '../data/site';
+---
+
+<Base title="Home Lab" description="Martin Horciak's home lab: network segmentation, self-hosting, monitoring and attack/defense practice.">
+  <PageHeader eyebrow="// infrastructure" title="Home Lab" lead={homelab.intro} />
+  <HomeLab />
+</Base>
