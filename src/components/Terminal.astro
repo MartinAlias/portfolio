@@ -1,0 +1,145 @@
+---
+import type { TermLine } from '../data/site';
+
+interface Props {
+  title: string;
+  lines: TermLine[];
+}
+const { title, lines } = Astro.props;
+---
+
+<figure class="term" data-terminal data-script={JSON.stringify(lines)}>
+  <div class="term-bar">
+    <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <figcaption>{title}</figcaption>
+    <button type="button" class="replay" data-replay aria-label={`Replay ${title} demo`}>↻ replay</button>
+  </div>
+  <div class="term-screen" role="log" aria-label={`${title} demo session`}>
+    {
+      lines.map((l) =>
+        l.in !== undefined ? (
+          <div class="tl ssr">
+            <span class="prompt">$ </span>
+            <span class="cmd">{l.in}</span>
+          </div>
+        ) : (
+          <div class={`tl ssr${l.tone ? ` t-${l.tone}` : ''}`}>{l.out}</div>
+        )
+      )
+    }
+  </div>
+</figure>
+
+<style>
+  .term {
+    margin: 0;
+    border-radius: var(--radius);
+    background: var(--bg-term);
+    border: 1px solid #1f2a36;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    color: #c9d4df;
+  }
+  .term-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    background: #0e141b;
+    border-bottom: 1px solid #1f2a36;
+  }
+  .dots {
+    display: flex;
+    gap: 6px;
+  }
+  .dots i {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #ff5f57;
+  }
+  .dots i:nth-child(2) {
+    background: #febc2e;
+  }
+  .dots i:nth-child(3) {
+    background: #28c840;
+  }
+  figcaption {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: #7d8b9b;
+    margin-right: auto;
+  }
+  .replay {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: #7d8b9b;
+    background: none;
+    border: 1px solid #1f2a36;
+    border-radius: 6px;
+    padding: 2px 8px;
+    cursor: pointer;
+  }
+  .replay:hover {
+    color: #3ee08f;
+    border-color: #3ee08f;
+  }
+  .replay[hidden] {
+    display: none;
+  }
+  .term-screen {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    line-height: 1.6;
+    padding: 14px 16px 18px;
+    height: 360px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  @media (max-width: 640px) {
+    .term-screen {
+      font-size: 0.72rem;
+      white-space: pre;
+      overflow-x: auto;
+    }
+  }
+  :global(.js) .term-screen .ssr {
+    display: none;
+  }
+  .term-screen :global(.tl) {
+    min-height: 1.6em;
+  }
+  .term-screen :global(.prompt) {
+    color: #3ee08f;
+    font-weight: 700;
+  }
+  .term-screen :global(.cmd) {
+    color: #ffffff;
+  }
+  .term-screen :global(.cmd.typing::after) {
+    content: '▋';
+    color: #3ee08f;
+    animation: blink 1s steps(1) infinite;
+  }
+  .term-screen :global(.t-ok) {
+    color: #3ee08f;
+  }
+  .term-screen :global(.t-warn) {
+    color: #f5c451;
+  }
+  .term-screen :global(.t-bad) {
+    color: #ff6b6b;
+  }
+  .term-screen :global(.t-dim) {
+    color: #8796a8;
+  }
+  .term-screen :global(.t-accent) {
+    color: #4cc2ff;
+  }
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+</style>

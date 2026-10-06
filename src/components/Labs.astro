@@ -1,0 +1,64 @@
+---
+import { writeups, links } from '../data/site';
+---
+
+{
+  writeups.length > 0 && (
+    <section id="labs">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">// practice</span>
+          <h2>Labs, CTFs & write-ups</h2>
+          <p>
+            Hands-on practice and notes from labs, capture-the-flag events and the home lab.
+            {links.tryhackme && (
+              <>
+                {' '}
+                <a href={links.tryhackme} rel="noopener">TryHackMe</a>
+              </>
+            )}
+            {links.hackthebox && (
+              <>
+                {' '}
+                · <a href={links.hackthebox} rel="noopener">Hack The Box</a>
+              </>
+            )}
+          </p>
+        </div>
+        <ul class="list">
+          {writeups.map((w) => (
+            <li class="card">
+              <span class="kind">{w.kind}</span>
+              <strong>{w.url ? <a href={w.url} rel="noopener">{w.title}</a> : w.title}</strong>
+              <span class="note">{w.note}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+  .list li {
+    display: grid;
+    gap: 4px;
+  }
+  .kind {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent-2);
+  }
+  .note {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+</style>

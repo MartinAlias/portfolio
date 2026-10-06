@@ -1,0 +1,68 @@
+---
+import { profile } from '../data/site';
+
+const focus = [
+  { k: 'Focus', v: 'Security engineering, AI agents' },
+  { k: 'Building', v: 'LabWarden, AI Race Engineer' },
+  { k: 'Learning', v: 'Pen-testing, detection, cloud' },
+  { k: 'Principle', v: 'Read-only by default; humans approve changes' },
+];
+---
+
+<section id="about">
+  <div class="container about">
+    <div>
+      <div class="section-head">
+        <span class="eyebrow">// whoami</span>
+        <h2>About me</h2>
+      </div>
+      {profile.about.map((p) => <p class="para">{p}</p>)}
+    </div>
+    <aside class="card" aria-label="At a glance">
+      <dl>
+        {
+          focus.map((f) => (
+            <div>
+              <dt>{f.k}</dt>
+              <dd>{f.v}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .about {
+    display: grid;
+    gap: 28px;
+    align-items: start;
+  }
+  @media (min-width: 900px) {
+    .about {
+      grid-template-columns: 1.6fr 1fr;
+      gap: 48px;
+    }
+    aside {
+      margin-top: 88px;
+    }
+  }
+  .para {
+    color: var(--muted);
+    max-width: 68ch;
+  }
+  dl {
+    margin: 0;
+    display: grid;
+    gap: 14px;
+  }
+  dt {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+  }
+  dd {
+    margin: 2px 0 0;
+  }
+</style>

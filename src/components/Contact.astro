@@ -1,0 +1,84 @@
+---
+import { links, profile } from '../data/site';
+
+const channels = [
+  links.email && { label: 'Email', value: links.email, href: `mailto:${links.email}` },
+  { label: 'GitHub', value: `@${profile.handle}`, href: links.github },
+  links.linkedin && { label: 'LinkedIn', value: 'Connect', href: links.linkedin },
+  links.resume && { label: 'Resume', value: 'Download PDF', href: links.resume },
+].filter(Boolean) as { label: string; value: string; href: string }[];
+---
+
+<section id="contact">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">// contact</span>
+      <h2>Let's talk</h2>
+      <p>
+        I'm open to security and AI engineering roles, collaborations, and conversations about safe agent
+        design.
+      </p>
+    </div>
+    <ul class="channels">
+      {
+        channels.map((c) => (
+          <li>
+            <a class="card" href={c.href} rel="noopener">
+              <span class="label">{c.label}</span>
+              <span class="value">{c.value}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="container foot">
+    <span>© {new Date().getFullYear()} {profile.name}</span>
+    <span>Built with Astro · Hosted on Vercel · <a href="/.well-known/security.txt">security.txt</a></span>
+  </div>
+</footer>
+
+<style>
+  .channels {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+  .channels a {
+    display: grid;
+    gap: 4px;
+    color: var(--text);
+    height: 100%;
+  }
+  .channels a:hover {
+    text-decoration: none;
+    border-color: var(--accent);
+  }
+  .label {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+  }
+  .value {
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 0 32px;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .foot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+  }
+</style>

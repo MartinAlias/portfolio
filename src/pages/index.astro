@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import FeaturedProject from '../components/FeaturedProject.astro';
+import Projects from '../components/Projects.astro';
+import HomeLab from '../components/HomeLab.astro';
+import Skills from '../components/Skills.astro';
+import Experience from '../components/Experience.astro';
+import Labs from '../components/Labs.astro';
+import Contact from '../components/Contact.astro';
+import { featured } from '../data/site';
+---
+
+<Base>
+  <Header />
+  <main id="main">
+    <Hero />
+    <About />
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">// featured work</span>
+          <h2>AI agents, built safe by design</h2>
+          <p>
+            Two agents I'm building now. Both share one rule: the AI can observe and advise, but a human
+            decides what changes.
+          </p>
+        </div>
+        {featured.map((p, i) => <FeaturedProject project={p} flip={i % 2 === 1} />)}
+        <Projects />
+      </div>
+    </section>
+    <HomeLab />
+    <Skills />
+    <Experience />
+    <Labs />
+    <Contact />
+  </main>
+</Base>

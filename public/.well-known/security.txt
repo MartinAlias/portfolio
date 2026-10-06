@@ -1,0 +1,5 @@
+# Found a security issue with this site? Thank you, please report it here.
+Contact: https://github.com/MartinAlias
+Expires: 2027-10-06T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://martinhorciak.vercel.app/.well-known/security.txt

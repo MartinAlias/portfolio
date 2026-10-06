@@ -1,0 +1,117 @@
+---
+import Terminal from './Terminal.astro';
+import type { FeaturedProject } from '../data/site';
+
+interface Props {
+  project: FeaturedProject;
+  flip?: boolean;
+}
+const { project, flip = false } = Astro.props;
+---
+
+<article class:list={['feature', { flip }]} id={project.id}>
+  <div class="info">
+    <h3>{project.name}</h3>
+    <p class="status">{project.status}</p>
+    <p class="summary">{project.summary}</p>
+    <ul class="highlights">
+      {
+        project.highlights.map((h) => (
+          <li>
+            <strong>{h.title}</strong>
+            <span>{h.body}</span>
+          </li>
+        ))
+      }
+    </ul>
+    <ul class="tags">{project.stack.map((s) => <li>{s}</li>)}</ul>
+    <p class="links">
+      {project.repo ? (
+        <a class="btn" href={project.repo} rel="noopener">View source</a>
+      ) : (
+        project.privateNote && <span class="private">🔒 {project.privateNote}</span>
+      )}
+    </p>
+  </div>
+  <div class="demo">
+    <Terminal title={project.terminalTitle} lines={project.terminal} />
+    <p class="caption">Scripted replay of the real CLI. Output is illustrative.</p>
+  </div>
+</article>
+
+<style>
+  .feature {
+    display: grid;
+    gap: 28px;
+    align-items: start;
+    padding: 28px 0;
+  }
+  .feature + .feature {
+    border-top: 1px dashed var(--border);
+    padding-top: 48px;
+    margin-top: 20px;
+  }
+  @media (min-width: 960px) {
+    .feature {
+      grid-template-columns: 1fr 1.05fr;
+      gap: 44px;
+    }
+    .flip .info {
+      order: 2;
+    }
+  }
+  h3 {
+    font-size: 1.6rem;
+  }
+  .status {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--warn);
+    margin: 6px 0 0;
+  }
+  .summary {
+    color: var(--muted);
+    margin: 14px 0 18px;
+  }
+  .highlights {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+    display: grid;
+    gap: 12px;
+  }
+  .highlights li {
+    padding-left: 16px;
+    border-left: 2px solid var(--accent);
+  }
+  .highlights strong {
+    display: block;
+    font-size: 0.95rem;
+  }
+  .highlights span {
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+  .links {
+    margin: 18px 0 0;
+  }
+  .private {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  .demo {
+    min-width: 0;
+  }
+  @media (min-width: 960px) {
+    .demo {
+      position: sticky;
+      top: 84px;
+    }
+  }
+  .caption {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin: 8px 2px 0;
+  }
+</style>
