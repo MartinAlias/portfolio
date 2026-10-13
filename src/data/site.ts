@@ -18,13 +18,6 @@ export const profile = {
     "On the security side I've driven SOC 2 readiness, rolled out just-in-time privileged access with PrivX and Azure PIM, run vulnerability assessments with Wazuh and SentinelOne, and deployed SIEM and IDS/IPS controls. I hold TCM Security's Practical Junior Penetration Tester (PJPT) and I'm working toward CompTIA Security+.",
     'Outside work I build AI agents that are safe by design. LabWarden is an AI network and security engineer for my home lab that can observe and advise but never change anything. AI Race Engineer applies the same idea to motorsport: an agent that proposes changes and applies them only once a human approves.',
   ],
-  // Headline numbers on the home page (from the resume).
-  stats: [
-    { value: '5+', label: 'years in infrastructure & security' },
-    { value: '82%', label: 'better threat detection coverage after SIEM and IDS/IPS rollout' },
-    { value: '18%', label: 'cloud spend cut through capacity planning' },
-    { value: '8+ hrs', label: 'of manual ops work automated every week' },
-  ],
 };
 
 export const links = {
@@ -139,31 +132,38 @@ export const featured: FeaturedProject[] = [
 ];
 
 // ── Home lab ────────────────────────────────────────────────────────────────
-// TODO: replace with your real hardware and services.
 export const homelab = {
   intro:
-    'My home lab is where I practice network segmentation, self-hosting, monitoring and attack/defense. It is also the test bed for LabWarden.',
+    "My home lab is where I practice attacking and defending vulnerable Windows and Linux machines, self-host apps with Docker and filter DNS for the whole network. It is also the test bed for LabWarden, the AI network engineer I'm building.",
   hardware: [
-    { name: 'TODO: Firewall / router', detail: 'e.g. OPNsense on a mini PC (4× 2.5GbE)' },
-    { name: 'TODO: Hypervisor', detail: 'e.g. Proxmox VE on a used SFF PC, 64 GB RAM' },
-    { name: 'TODO: Storage', detail: 'e.g. TrueNAS, 2× 4 TB mirror' },
-    { name: 'TODO: Switch / AP', detail: 'e.g. managed VLAN-aware switch + Wi-Fi AP' },
+    { name: 'Server', detail: 'Runs the attack range (2 Windows + 2 Linux vulnerable VMs), Docker and LabWarden' },
+    { name: 'Raspberry Pi Zero 2 W', detail: 'Pi-hole: network-wide DNS filtering and ad blocking' },
+    { name: '2× eero Pro 6E', detail: 'Tri-band Wi-Fi 6E access points' },
+    { name: 'Network switch', detail: 'Wired backbone for the lab' },
   ],
   services: [
-    'TODO: Pi-hole (DNS filtering)',
-    'TODO: Docker host (self-hosted apps)',
-    'TODO: Wazuh / Security Onion (SIEM, IDS)',
-    'TODO: Kali + vulnerable VMs (attack range)',
-    'TODO: WireGuard (remote access)',
-    'TODO: Grafana + Prometheus (monitoring)',
+    'Vulnerable Windows VMs ×2',
+    'Vulnerable Linux VMs ×2',
+    'Docker (self-hosted apps)',
+    'Pi-hole (DNS filtering)',
+    'LabWarden (in development)',
   ],
-  // Used for the network diagram. Keep to 3–5 segments and notes under ~18 characters.
-  vlans: [
-    { id: 10, name: 'Trusted', note: 'workstations, NAS' },
-    { id: 20, name: 'IoT', note: 'internet only' },
-    { id: 30, name: 'Lab', note: 'isolated range' },
-    { id: 99, name: 'Mgmt', note: 'admin only' },
-  ],
+  // Network diagram: internet → router → switch → server (with its guests) + other devices.
+  // Keep guest and device names under ~14 characters so they fit their boxes.
+  diagram: {
+    server: { name: 'Server', note: 'VMs + containers' },
+    guests: [
+      { name: 'Windows VM ×2', note: 'vulnerable targets', kind: 'vuln' },
+      { name: 'Linux VM ×2', note: 'vulnerable targets', kind: 'vuln' },
+      { name: 'Docker', note: 'self-hosted apps', kind: '' },
+      { name: 'LabWarden', note: 'in development', kind: 'wip' },
+    ],
+    devices: [
+      { name: 'Pi-hole', note: 'Pi Zero 2 W' },
+      { name: 'eero Pro 6E', note: 'Wi-Fi AP 1' },
+      { name: 'eero Pro 6E', note: 'Wi-Fi AP 2' },
+    ],
+  },
 };
 
 // ── Skills ──────────────────────────────────────────────────────────────────

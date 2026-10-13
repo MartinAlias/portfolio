@@ -1,26 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
-import { profile, featured, experience, certifications } from '../data/site';
+import { featured, experience, certifications } from '../data/site';
 ---
 
 <Base>
   <Hero />
 
-  <section class="stats-wrap" aria-label="Highlights">
-    <div class="container">
-      <ul class="stats">
-        {
-          profile.stats.map((s) => (
-            <li class="card">
-              <span class="value">{s.value}</span>
-              <span class="label">{s.label}</span>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
 
   <section>
     <div class="container">
@@ -80,33 +66,6 @@ import { profile, featured, experience, certifications } from '../data/site';
 </Base>
 
 <style>
-  .stats-wrap {
-    border-top: none;
-    padding-top: 0;
-  }
-  .stats {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 14px;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-  .stats li {
-    display: grid;
-    gap: 4px;
-  }
-  .value {
-    font-family: var(--mono);
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--accent);
-    line-height: 1.1;
-  }
-  .label {
-    color: var(--muted);
-    font-size: 0.9rem;
-  }
   .teaser {
     display: flex;
     flex-direction: column;

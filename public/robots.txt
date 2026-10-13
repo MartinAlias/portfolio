@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://martinhorciak.vercel.app/sitemap-index.xml
+Sitemap: https://horciak-portfolio.vercel.app/sitemap-index.xml
